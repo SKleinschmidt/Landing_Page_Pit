@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FiberGuardian</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+
+    <style>
+        :root {
+            --primary-color: #8b0000;
+            --accent-color: #ff3b3f;
+            --dark-color: #0d0d0d;
+            --light-color: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #000000, #8b0000);
+            color: var(--light-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .main-title img {
+            max-width: 300px;
+            margin-bottom: 30px;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: #ddd;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* TEAM SECTION */
+        .team-section {
+            padding: 80px 0;
+            background-color: var(--dark-color);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* TEAM CARD */
+        .team-card {
+            background-color: #1a1a1a;
+            border: 1px solid var(--accent-color);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 0 15px rgba(255, 59, 63, 0.2);
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(255, 59, 63, 0.4);
+        }
+
+        .member-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .member-image:hover {
+            transform: scale(1.05);
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--light-color);
+            margin-bottom: 10px;
+        }
+
+        /* SOCIAL LINKS */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link.github {
+            background: linear-gradient(45deg, #333, #555);
+        }
+
+        .social-link.linkedin {
+            background: linear-gradient(45deg, #0077b5, #00a0dc);
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        /* MODAL */
+        .modal-content {
+            background-color: #1e1e1e;
+            color: #fff;
+            border: 1px solid var(--accent-color);
+            border-radius: 20px;
+        }
+
+        .modal-header {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 2rem;
+        }
+
+        .modal-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .btn-close {
+            filter: invert(1);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .member-details img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            border: 3px solid var(--primary-color);
+        }
+
+        .member-bio {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ANIMAÇÕES */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title img {
+                max-width: 200px;
+            }
+
+            .member-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .team-card {
+                padding: 1.5rem;
+            }
+        }
+        .descricao {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #e0e0e0;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid #ff3b3f;
+    border-radius: 8px;
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="main-title"><img src="imagens/fiberguardian_simplificado.png" alt=""></h1>
+            <p class="descricao">
+                O <strong>FiberGuardian</strong> é uma plataforma especializada no controle de qualidade de insumos
+                têxteis. Com dados em tempo real e indicadores precisos sobre fornecedores, o sistema torna os processos
+                mais ágeis, seguros e confiáveis.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">Nossa Equipe</h2>
+            <div class="row">
+                <!-- Membro 1 -->
+                <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.1s;">
+                    <div class="team-card">
+                        <img src="imagens/Giovanni.jpg" alt="Giovanni Leopoldo Rozza" class="member-image"
+                            onclick="openMemberModal('giovanni')">
+                        <h3 class="member-name">Giovanni Leopoldo Rozza</h3>
+                        <div class="social-links">
+                            <a href="https://github.com/rgiovann" class="social-link github" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/giovanni-leopoldo-rozza" class="social-link linkedin"
+                                target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membro 2 -->
+                <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.2s;">
+                    <div class="team-card">
+                        <img src="imagens/Renata.png" alt="Renata Brito de Souza" class="member-image"
+                            onclick="openMemberModal('renata')">
+                        <h3 class="member-name">Renata Brito de Souza</h3>
+                        <div class="social-links">
+                            <a href="https://github.com/RenataBrito99" class="social-link github" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/renata-brito-s21" class="social-link linkedin"
+                                target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membro 3 -->
+                <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.3s;">
+                    <div class="team-card">
+                        <img src="imagens/Sigfrid.jpg" alt="Sigfrid Kleinschmidt" class="member-image"
+                            onclick="openMemberModal('sigfrid')">
+                        <h3 class="member-name">Sigfrid Kleinschmidt</h3>
+                        <div class="social-links">
+                            <a href="https://github.com/SKleinschmidt" class="social-link github" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/sigfrid-kleinschmidt-91a49295"
+                                class="social-link linkedin" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membro 4 -->
+                <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.4s;">
+                    <div class="team-card">
+                        <img src="imagens/venancio.jpg" alt="Venâncio Domingos Cassua" class="member-image"
+                            onclick="openMemberModal('venancio')">
+                        <h3 class="member-name">Venâncio Domingos Cassua</h3>
+                        <div class="social-links">
+                            <a href="https://github.com/venancio-cassua" class="social-link github" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/venâncio-domingos-cassua-75b54b376"
+                                class="social-link linkedin" target="_blank">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para informações do membro -->
+    <div class="modal fade" id="memberModal" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="memberModalLabel">Informações do Membro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="member-details" id="memberDetails">
+                        <!-- Conteúdo será preenchido pelo JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dados dos membros da equipe
+        const teamMembers = {
+            giovanni: {
+                name: "Giovanni Leopoldo Rozza",
+                image: "imagens/Giovanni.jpg",
+                bio: `<p>Meu nome é Giovanni Leopoldo Rozza, sou engenheiro eletricista e mestre em engenharia de produção com 15 anos de experiência em desenvolvimento de software e liderança técnica em empresas como Siemens, Nortel Networks e TIM Brasil, atualmente em transição para desenvolvimento Java Backend.</p>
+              <p>Tenho experiência internacional na Alemanha(inglês B1+) com equipes globais e background em arquitetura de sistemas, gestão de projetos de TI e experiência em docência em instituições como SENAI-SC e UFPR.</p>
+              <p>Estou consolidando conhecimentos em Java através de três programas simultâneos: pós-graduação em Linguagem Java na UTFPR, programa Entra21 (Java) e +Devs2Blu (DevOps) da BluSoft/SC, desenvolvendo competências em Spring Boot, JPA/Hibernate, REST APIs, OAuth2/JWT, Linux, bancos de dados relacionais e ferramentas como Docker e Kubernetes.</p>
+              <p>Meu objetivo é aplicar experiência em engenharia e liderança no desenvolvimento de soluções Java, contribuindo para arquiteturas modernas em equipes de tecnologia.</p>`,
+
+                skills: ["Java BE Developer", "JavaScript", "HTML5", "MySQL", "Git", "GitHub", "Spring Boot ", "Flyway", "Lombok", "Spring Security", "REST APIs", "CSS3", "OAuth2/JWT", "Docker", "Hibernate"],
+                github: "https://github.com/rgiovann",
+                linkedin: "https://linkedin.com/in/giovanni-leopoldo-rozza"
+            },
+            renata: {
+                name: "Renata Brito de Souza",
+                image: "imagens/Renata.png",
+                bio: `<p>Meu nome é Renata Brito, tenho 25 anos e atualmente curso Big Data e Inteligência Analítica. Sou uma pessoa curiosa, dedicada e movida pelo desejo de transformar informações em soluções práticas e inovadoras.</p>
+                    <p>No campo profissional, atuo com atendimento ao público, experiência que fortaleceu minhas competências em comunicação, empatia e resolução de problemas. Paralelamente, estou construindo minha trajetória em tecnologia da informação, com foco em Inteligência Artificial, análise de dados e desenvolvimento de sistemas.</p>`,
+
+                skills: ["Java BE Developer", "JavaScript", "HTML5", "CSS3", "Spring Boot", "Lombok", "MySQL", "REST APIs", "Git", "GitHub", "Hibernate", "Python"],
+                github: "https://github.com/RenataBrito99",
+                linkedin: "https://linkedin.com/in/renata-brito-s21"
+            },
+            sigfrid: {
+                name: "Sigfrid Kleinschmidt",
+                image: "imagens/Sigfrid.jpg",
+                bio: `<p>Olá, meu nome é Sigfrid Kleinschmidt. Tenho 36 anos e estou em um momento de transição em minha carreira. Por 15 anos e meio, trabalhei na Indústria Têxtil, onde adquiri um conhecimento profundo de todo o fluxo de produção.</p>
+              <p>Atualmente, estou no programa Entra 21 para realizar essa transição para a área de desenvolvimento de software, um campo que sempre quis atuar. Para isso, eu domino o uso de ferramentas como HTML, CSS, JavaScript e Java.</p>
+              <p>Com o conhecimento que adquiri na Indústria Têxtil, meu objetivo é desenvolver softwares e aplicativos que ajudem a otimizar processos como controle de qualidade, estoque, registro e apontamento de produção.</p>
+              <p>Com isso, surgiu o Fiber Guardian, com a intenção de controlar e auxiliar na tomada de decisões em relação à qualidade do fio utilizado na produção.</p>`,
+                skills: ["Java BE Developer", "JavaScript", "HTML5", "CSS3", "MySQL", "GitHub", "Spring Boot ", "REST APIs"],
+                github: "https://github.com/SKleinschmidt",
+                linkedin: "https://linkedin.com/in/sigfrid-kleinschmidt-91a49295"
+            },
+            venancio: {
+                name: "Venâncio Domingos Cassua",
+                image: "imagens/venancio.jpg",
+                bio: `<p>Sou técnico em Desenvolvimento de Sistemas pelo SENAI e curso Ciência da Computação na FURB. Venho construindo uma base sólida por meio de projetos práticos em Java, Spring Boot e APIs REST, além de experiências colaborativas.</p>
+                <p>Atualmente sou bolsista de iniciação científica no LDTT/FURB, atuando com desenvolvimento web em equipe. Dentro do programa Entra21 pude evoluir tecnicamente e em trabalho em equipe.</p>
+                <p>Tenho grande interesse em atuar como desenvolvedor de software e busco sempre aprender, colaborar e entregar soluções com propósito.</p>`,
+
+                skills: ["Java BE Developer", "JavaScript", "TypeScript", "HTML5", "CSS3", "Spring Boot", "Lombok", "MySQL", "REST APIs", "GitHub", "Thymeleaf"],
+                github: "https://github.com/venancio-cassua",
+                linkedin: "https://linkedin.com/in/venâncio-domingos-cassua-75b54b376"
+            }
+        };
+
+        /*
+
+        "Java BE Developer", "JavaScript", "HTML5", "MySQL", "Git", "GitHub", "Spring Boot ", "Flyway", "Lombok", "Spring Security", "REST APIs", "CSS3",  "OAuth2/JWT", "Docker", "Hibernate"
+        */
+
+        // Função para abrir modal com informações do membro
+        function openMemberModal(memberId) {
+            const member = teamMembers[memberId];
+            if (!member) return;
+
+            const memberDetails = document.getElementById('memberDetails');
+            const modalTitle = document.getElementById('memberModalLabel');
+
+            modalTitle.textContent = member.name;
+
+            memberDetails.innerHTML = `
+                <img src="${member.image}" alt="${member.name}">
+                <h4>${member.name}</h4>
+                <p class="member-bio">${member.bio}</p>
+                <div class="skills">
+                    ${member.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                </div>
+                <div class="social-links">
+                    <a href="${member.github}" class="social-link github" target="_blank">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="${member.linkedin}" class="social-link linkedin" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            `;
+
+            const modal = new bootstrap.Modal(document.getElementById('memberModal'));
+            modal.show();
+        }
+
+        // Animação de entrada dos cards
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.animationPlayState = 'running';
+                }
+            });
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Efeito parallax suave no hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-section');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+
+</html>
