@@ -32,23 +32,34 @@
             overflow-x: hidden;
         }
 
+        /* HERO SECTION bb */
         /* HERO SECTION */
-        .hero-section {
-            padding: 100px 0;
-            text-align: center;
-        }
+.hero-section {
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(180deg, #000000 0%, #2b0000 50%, #8b0000 100%);
+}
 
-        .main-title img {
-            max-width: 300px;
-            margin-bottom: 30px;
-        }
+.main-title img {
+    position: relative;
+    z-index: 1;
+    max-width: 420px;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.8))   /* brilho branco para contraste */
+            drop-shadow(0 0 18px rgba(255,59,63,0.6))     /* glow vermelho da paleta */
+            drop-shadow(0 0 25px rgba(0,0,0,0.5))         /* sombra preta suave */
+            brightness(1.05);                             /* leve realce da logo */
+}
 
-        .hero-section p {
-            font-size: 1.2rem;
-            color: #ddd;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+
+.hero-section p {
+    font-size: 1.2rem;
+    color: #f0f0f0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
 
         /* TEAM SECTION */
         .team-section {
