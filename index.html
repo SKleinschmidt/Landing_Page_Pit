@@ -257,12 +257,60 @@
     border-left: 4px solid #ff3b3f;
     border-radius: 8px;
 }
+        /* ESTILOS DA SEÇÃO DE IMAGENS */
+        .imagens-section {
+            padding: 80px 0;
+            background-color: #0d0d0d;
+        }
 
+        .imagens-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .imagem-item {
+            background-color: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .imagem-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .imagem-item img {
+            width: 120%;
+            height: 400px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .imagem-descricao {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .imagem-descricao h3 {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .imagem-descricao p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #ccc;
+        }
     </style>
 </head>
 
 <body>
-    <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
             <h1 class="main-title"><img src="imagens/fiberguardian_simplificado.png" alt=""></h1>
@@ -275,12 +323,40 @@
         </div>
     </section>
 
-    <!-- Team Section -->
+    <section id="imagens-projetos" class="imagens-section">
+        <div class="container">
+            <h2 class="section-title">O Nosso Projeto</h2>
+            <div class="imagens-container">
+                <div class="imagem-item">
+                    <img src="imagens/Menu Incial.png" alt="Menu Inicial">
+                    <div class="imagem-descricao">
+                        <h3>A Plataforma</h3>
+                        <p>O FiberGuardian é uma plataforma inovadora criada para transformar o controle de qualidade na indústria têxtil,
+                             oferecendo uma solução completa e eficiente para a gestão de lotes de fios e seus fornecedores   
+                        </p>
+
+                        <p>A plataforma revoluciona o processo ao digitalizar cada etapa: desde o registro do recebimento de um novo lote,
+                             passando pelo cadastro detalhado do produto, até o registro preciso dos testes de qualidade realizados em laboratório.
+                            </p>
+
+                            <p>Além disso, o FiberGuardian se destaca por sua capacidade de análise técnica, permitindo que a engenharia têxtil realize
+                             uma avaliação aprofundada de lotes de fios que foram rejeitados nos testes de qualidade. Isso não só agiliza o processo de
+                             tomada de decisão, mas também contribui para a melhoria contínua da cadeia de suprimentos, garantindo insumos mais 
+                             confiáveis e de alta qualidade para a produção.</p>
+
+                             <p>O uso de um fio de má qualidade pode levar a sérios prejuízos, como a parada de máquina, um alto índice de produtos de
+                                 segunda qualidade, reprocessos, redução na margem de lucro e a perda de faturamento. O FiberGuardian atua como uma ferramenta
+                                 preventiva, identificando esses problemas antes que eles afetem sua produção e seus resultados financeiros.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="team-section">
         <div class="container">
             <h2 class="section-title">Nossa Equipe</h2>
             <div class="row">
-                <!-- Membro 1 -->
                 <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.1s;">
                     <div class="team-card">
                         <img src="imagens/Giovanni.jpg" alt="Giovanni Leopoldo Rozza" class="member-image"
@@ -298,7 +374,6 @@
                     </div>
                 </div>
 
-                <!-- Membro 2 -->
                 <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.2s;">
                     <div class="team-card">
                         <img src="imagens/Renata.png" alt="Renata Brito de Souza" class="member-image"
@@ -316,7 +391,6 @@
                     </div>
                 </div>
 
-                <!-- Membro 3 -->
                 <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.3s;">
                     <div class="team-card">
                         <img src="imagens/Sigfrid.jpg" alt="Sigfrid Kleinschmidt" class="member-image"
@@ -334,7 +408,6 @@
                     </div>
                 </div>
 
-                <!-- Membro 4 -->
                 <div class="col-lg-3 col-md-6 mb-4 fade-in" style="animation-delay: 0.4s;">
                     <div class="team-card">
                         <img src="imagens/venancio.jpg" alt="Venâncio Domingos Cassua" class="member-image"
@@ -355,7 +428,6 @@
         </div>
     </section>
 
-    <!-- Modal para informações do membro -->
     <div class="modal fade" id="memberModal" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -365,8 +437,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="member-details" id="memberDetails">
-                        <!-- Conteúdo será preenchido pelo JavaScript -->
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>

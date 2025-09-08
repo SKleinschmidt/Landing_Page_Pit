@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão de Visita FiberGuardia</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8b0000;
+            --accent-color: #ff3b3f;
+            --dark-color: #0d0d0d;
+            --light-color: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000, #8b0000);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .business-card {
+            width: 350px;
+            height: 200px;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .business-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        /* FRENTE DO CARTÃO */
+        .card-front {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            border: 2px solid var(--accent-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--light-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-front::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,59,63,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.1; }
+        }
+
+        .logo {
+            font-size: 2.8em;
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 2;
+            position: relative;
+        }
+
+        .fiber {
+            color: var(--light-color);
+        }
+
+        .guardia {
+            color: var(--accent-color);
+            margin-left: -5px;
+        }
+
+        .tagline {
+            font-size: 0.9em;
+            margin-top: 10px;
+            opacity: 0.9;
+            z-index: 2;
+            position: relative;
+        }
+
+        .tech-pattern {
+            position: absolute;
+            bottom: 10px;
+            right: 15px;
+            font-size: 2em;
+            color: var(--accent-color);
+            opacity: 0.3;
+            z-index: 1;
+        }
+
+        /* VERSO DO CARTÃO */
+        .card-back {
+            background: linear-gradient(135deg, var(--dark-color), #1a1a1a);
+            border: 2px solid var(--accent-color);
+            padding: 30px 25px;
+            color: var(--light-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-back::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
+        }
+
+        .team-section {
+            margin-bottom: 20px;
+        }
+
+        .team-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .team-members {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .member {
+            font-size: 0.95em;
+            padding: 4px 0;
+            border-left: 2px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        .contact-section {
+            border-top: 1px solid rgba(255,59,63,0.3);
+            padding-top: 15px;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
+            padding: 5px 0;
+        }
+
+        .contact-icon {
+            color: var(--accent-color);
+            width: 16px;
+        }
+
+        .phone-placeholder {
+            color: #888;
+            font-style: italic;
+            border: 1px dashed #444;
+            padding: 2px 6px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .card-label {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: var(--light-color);
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .business-card {
+                width: 320px;
+                height: 180px;
+            }
+            
+            .logo {
+                font-size: 2.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <!-- FRENTE DO CARTÃO -->
+        <div class="business-card card-front">
+            <div class="logo">
+                <span class="fiber">Fiber</span><span class="guardia">Guardia</span>
+            </div>
+            <div class="tagline">Tecnologias</div>
+            <div class="tech-pattern">
+                <i class="fas fa-network-wired"></i>
+            </div>
+        </div>
+
+        <!-- VERSO DO CARTÃO -->
+        <div class="business-card card-back">
+            <div class="team-section">
+                <div class="team-title">
+                    <i class="fas fa-users"></i>
+                    Equipe Técnica
+                </div>
+                <div class="team-members">
+                    <div class="member">
+                        <div class="member-name">Sigfrid</div>
+                        <div class="member-phone">(47) 99188-4420</div>
+                    </div>
+                    <div class="member">
+                        <div class="member-name">Geovane</div>
+                        <div class="member-phone">(11) 9xxxx-xxxx</div>
+                    </div>
+                    <div class="member">
+                        <div class="member-name">Renata</div>
+                        <div class="member-phone">(11) 9xxxx-xxxx</div>
+                    </div>
+                    <div class="member">
+                        <div class="member-name">Venancio</div>
+                        <div class="member-phone">(11) 9xxxx-xxxx</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <div class="contact-info">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <span class="phone-placeholder">[Inserir Telefone]</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <span>contato@fiberguardian.com</span>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-globe contact-icon"></i>
+                    <span>www.fiberguardia.com</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-label">
+        <p><strong>Cartão de Visita FiberGuardia</strong> - Frente e Verso</p>
+        <p style="font-size: 0.8em; margin-top: 5px;">Dimensões: 8,8cm x 5,4cm (padrão para impressão)</p>
+    </div>
+</body>
+</html>
