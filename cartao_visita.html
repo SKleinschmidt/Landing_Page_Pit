@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartão de Visitas - FiberGuardian</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');
+
+        :root {
+            --primary-color: #8b0000;
+            --accent-color: #ff3b3f;
+            --dark-color: #0d0d0d;
+            --light-color: #f0f0f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #2c2c2c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .card-container {
+            perspective: 1000px;
+            width: 88mm; /* Dimensões padrão para impressão: 8.8cm */
+            height: 54mm; /* Dimensões padrão para impressão: 5.4cm */
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 12px;
+        }
+
+        .business-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+            border-radius: 12px;
+        }
+
+        .card-container:hover .business-card {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            color: var(--light-color);
+            border-radius: 12px;
+            box-sizing: border-box;
+            border: 1px solid var(--accent-color);
+        }
+
+        /* FRENTE DO CARTÃO */
+        .card-face-front {
+            background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
+        }
+
+        .card-logo {
+            width: 60px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--light-color);
+            margin-bottom: 5px;
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+            color: var(--accent-color);
+            text-shadow: 0 0 5px rgba(255, 59, 63, 0.4);
+            margin-bottom: 20px;
+        }
+
+        /* VERSO DO CARTÃO (NOVO LAYOUT) */
+        .card-face-back {
+            background-color: var(--dark-color);
+            transform: rotateY(180deg);
+            padding: 15px;
+        }
+
+        .team-list {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            text-align: left;
+            padding: 0 10px;
+        }
+        
+        .member-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border-left: 2px solid var(--accent-color);
+            padding-left: 10px;
+        }
+        
+        .member-info h4 {
+            margin: 0;
+            font-size: 0.8rem;
+            color: var(--light-color);
+            white-space: nowrap; /* Impede quebras de linha no nome */
+            overflow: hidden;
+            text-overflow: ellipsis; /* Adiciona "..." se o nome for muito longo */
+        }
+        
+        .member-info p {
+            margin: 2px 0 0;
+            font-size: 0.7rem;
+            color: #ccc;
+        }
+
+        .member-info .phone-icon {
+            margin-right: 5px;
+            color: var(--accent-color);
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="card-container">
+        <div class="business-card">
+            <div class="card-face card-face-front">
+                <img src="imagens/fiberguardian_simplificado.png" alt="Logo FiberGuardian" class="card-logo">
+                <h1 class="card-title">FiberGuardian</h1>
+                <h2 class="card-subtitle">Controle de Qualidade que Transforma a Indústria Têxtil</h2>
+                <a href="http://www.fiberguardian.com" class="card-website" target="_blank" style="color:var(--light-color); text-decoration: none;">
+                    www.fiberguardian.com
+                </a>
+            </div>
+
+            <div class="card-face card-face-back">
+                <h1 class="card-title" style="margin-bottom: 20px;">Nossa Equipe</h1>
+                <div class="team-list">
+                    <div class="member-info">
+                        <h4>Giovanni Leopoldo Rozza</h4>
+                        <p><i class="fas fa-phone phone-icon"></i> (XX) XXXX-XXXX</p>
+                    </div>
+                    <div class="member-info">
+                        <h4>Renata Brito de Souza</h4>
+                        <p><i class="fas fa-phone phone-icon"></i> (XX) XXXX-XXXX</p>
+                    </div>
+                    <div class="member-info">
+                        <h4>Sigfrid Kleinschmidt</h4>
+                        <p><i class="fas fa-phone phone-icon"></i> (XX) XXXX-XXXX</p>
+                    </div>
+                    <div class="member-info">
+                        <h4>Venâncio Domingos Cassua</h4>
+                        <p><i class="fas fa-phone phone-icon"></i> (XX) XXXX-XXXX</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

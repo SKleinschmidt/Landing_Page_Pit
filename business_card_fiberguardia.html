@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cartão de Visita FiberGuardia</title>
+    <title>Cartão de Visita FiberGuardian</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -24,9 +24,16 @@
             background: linear-gradient(135deg, #000000, #8b0000);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
+        }
+
+        .card {
+            width: 8.8cm;
+            height: 5.4cm;
+            border: 1px solid black;
         }
 
         .card-container {
@@ -91,10 +98,10 @@
         }
 
         .fiber {
-            color: var(--light-color);
+            color: var(--dark-color);
         }
 
-        .guardia {
+        .guardian {
             color: var(--accent-color);
             margin-left: -5px;
         }
@@ -200,6 +207,74 @@
             opacity: 0.8;
         }
 
+        /* ESTILO DO BOTÃO DE IMPRESSÃO */
+        .print-button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            font-size: 1em;
+            font-weight: bold;
+            color: var(--light-color);
+            background: var(--accent-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 59, 63, 0.4);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .print-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 59, 63, 0.6);
+        }
+
+        /* ESTILOS PARA IMPRESSÃO */
+        @media print {
+            body {
+                background: none;
+                justify-content: flex-start;
+                padding: 0;
+                /* Oculta tudo na tela, exceto o container do cartão */
+                visibility: hidden;
+            }
+
+            .card-container {
+                visibility: visible;
+                display: block;
+                gap: 0;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            .business-card {
+                width: 8.8cm;
+                height: 5.4cm;
+                border-radius: 0;
+                box-shadow: none;
+                transform: none;
+                margin: 0;
+                display: block; /* Garante que o cartão seja exibido na impressão */
+            }
+
+            .business-card:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .card-front, .card-back {
+                border: none;
+                /* Impede que o conteúdo se ajuste ao tamanho do cartão na impressão */
+                /* Assegura que o layout seja o mesmo do que foi desenhado */
+                position: relative;
+                overflow: hidden;
+            }
+
+            /* Ocultar elementos que não devem ser impressos */
+            .card-label, .print-button {
+                display: none;
+            }
+        }
+
         @media (max-width: 768px) {
             .card-container {
                 flex-direction: column;
@@ -219,10 +294,9 @@
 </head>
 <body>
     <div class="card-container">
-        <!-- FRENTE DO CARTÃO -->
         <div class="business-card card-front">
             <div class="logo">
-                <span class="fiber">Fiber</span><span class="guardia">Guardia</span>
+                <span class="fiber">Fiber</span><span class="guardian">Guardian</span>
             </div>
             <div class="tagline">Tecnologias</div>
             <div class="tech-pattern">
@@ -230,7 +304,6 @@
             </div>
         </div>
 
-        <!-- VERSO DO CARTÃO -->
         <div class="business-card card-back">
             <div class="team-section">
                 <div class="team-title">
@@ -244,15 +317,15 @@
                     </div>
                     <div class="member">
                         <div class="member-name">Geovane</div>
-                        <div class="member-phone">(11) 9xxxx-xxxx</div>
+                        <div class="member-phone">(4) 993380-9351</div>
                     </div>
                     <div class="member">
                         <div class="member-name">Renata</div>
-                        <div class="member-phone">(11) 9xxxx-xxxx</div>
+                        <div class="member-phone">(47) 99233-4636</div>
                     </div>
                     <div class="member">
                         <div class="member-name">Venancio</div>
-                        <div class="member-phone">(11) 9xxxx-xxxx</div>
+                        <div class="member-phone">(47) 99782-5544</div>
                     </div>
                 </div>
             </div>
@@ -268,15 +341,19 @@
                 </div>
                 <div class="contact-info">
                     <i class="fas fa-globe contact-icon"></i>
-                    <span>www.fiberguardia.com</span>
+                    <span>www.fiberguardian.com</span>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="card-label">
-        <p><strong>Cartão de Visita FiberGuardia</strong> - Frente e Verso</p>
+        <p><strong>Cartão de Visita FiberGuardian</strong> - Frente e Verso</p>
         <p style="font-size: 0.8em; margin-top: 5px;">Dimensões: 8,8cm x 5,4cm (padrão para impressão)</p>
     </div>
+
+    <button class="print-button" onclick="window.print()">
+        <i class="fas fa-print"></i> Imprimir para Gráfica
+    </button>
 </body>
 </html>
