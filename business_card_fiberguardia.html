@@ -106,10 +106,10 @@
     }
 
     .team-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px 20px; /* espaçamento entre linhas e colunas */
+      align-items: start;
       justify-content: center;
     }
 
@@ -142,7 +142,7 @@
 
     .qr-side h3 {
         font-size: 0.7em;
-        color: var(--accent-color); /* A cor foi alterada para combinar com o título da equipe */
+        color: var(--accent-color);
         margin-bottom: 5px;
         font-weight: 600;
         text-transform: uppercase;
@@ -154,8 +154,8 @@
     }
     
     .qr-code-image img {
-        width: 90px;
-        height: 90px;
+        width: 75px;   /* Ajustado */
+        height: 75px;  /* Ajustado */
         margin-top: 5px;
         display: block;
         border: 2px solid var(--accent-color);
@@ -233,12 +233,12 @@
             <div class="team-phone">(47) 99188-4420</div>
           </div>
           <div class="team-member">
-            <div class="team-name">Giovanni</div>
-            <div class="team-phone">(47) 93380-9351</div>
-          </div>
-          <div class="team-member">
             <div class="team-name">Renata</div>
             <div class="team-phone">(47) 99233-4636</div>
+          </div>
+          <div class="team-member">
+            <div class="team-name">Giovanni</div>
+            <div class="team-phone">(47) 93380-9351</div>
           </div>
           <div class="team-member">
             <div class="team-name">Venâncio</div>
@@ -264,6 +264,7 @@
   </button>
 </body>
 </html>
+
 
 
 
